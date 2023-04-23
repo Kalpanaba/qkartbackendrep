@@ -1,11 +1,19 @@
 const express = require("express");
-const validate = require("../../middlewares/validate");
-const userValidation = require("../../validations/user.validation");
+const validate = require('../../middlewares/validate');
+const userValidation = require('../../validations/user.validation');
 const userController = require("../../controllers/user.controller");
-
 const router = express.Router();
 
-// TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement a route definition for `/v1/users/:userId`
+const { getUser } = require('../../validations/user.validation');
+//const auth = require("../../middlewares/auth");
+
+//router.get("/:userId",userController.getUser)
+router.get(
+    "/:userId",validate(getUser),
+        userController.getUser
+  );
+
+router.put("/:userId",userController.setAddress)
 
 
 module.exports = router;
