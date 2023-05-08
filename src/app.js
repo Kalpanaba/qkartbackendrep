@@ -2,12 +2,23 @@ const express = require("express");
 const compression = require("compression");
 const cors = require("cors");
 const httpStatus = require("http-status");
+const config = require("./config/config");
+const morgan = require("./config/morgan");
 const routes = require("./routes/v1");
 const { errorHandler } = require("./middlewares/error");
 const ApiError = require("./utils/ApiError");
+const { jwtStrategy } = require("./config/passport");
+const helmet = require("helmet");
+const passport = require("passport");
 
 const app = express();
+if (config.env !== "test") {
+    app.use(morgan.successHandler);
+    app.use(morgan.errorHandler);
+  }
 
+// set security HTTP headers - https://helmetjs.github.io/
+app.use(helmet());
 
 // parse json request body
 app.use(express.json());
@@ -22,6 +33,7 @@ app.use(compression());
 app.use(cors());
 app.options("*", cors());
 
+// TODO: CRIO_TASK_MODULE_AUTH - Initialize passport and add "jwt" authentication strategy
 
 // Reroute all API request starting with "/v1" route
 app.use("/v1", routes);
@@ -30,6 +42,9 @@ app.use("/v1", routes);
 app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
 });
+
+// // convert error to ApiError, if needed
+// app.use(errorConverter);
 
 // handle error
 app.use(errorHandler);
