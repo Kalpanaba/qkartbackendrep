@@ -10,13 +10,11 @@ const { getUser } = require('../../validations/user.validation');
 //router.get("/:userId",userController.getUser)
 router.get(
   "/:userId",
-  // CRIO_SOLUTION_START_MODULE_AUTH
   auth(),
-  // CRIO_SOLUTION_END_MODULE_AUTH
-  validate(userValidation.getUser),
+ validate(userValidation.getUser),
   userController.getUser
 );
-// CRIO_SOLUTION_END_MODULE_UNDERSTANDING_BASICS
+
 
 // Supports updating address only currently
 router.put(
