@@ -2,7 +2,7 @@ const Joi = require("joi");
 const httpStatus = require("http-status");
 const pick = require("../utils/pick");
 const ApiError = require("../utils/ApiError");
-const { getUser } = require('../validations/user.validation.js');
+
 /**
  *  Middleware function that validates user requests against a Joi schema
  *
