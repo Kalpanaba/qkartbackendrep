@@ -24,5 +24,4 @@ router.put(
   userController.setAddress
 );
 
-
 module.exports = router;
