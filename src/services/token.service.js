@@ -17,15 +17,24 @@ const { tokenTypes } = require("../config/tokens");
  * @returns {string}
  */
 const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
-  const payload = {
-    sub: userId,
-    iat: Math.floor(Date.now() / 1000),
-    exp: expires,
-    type,
-  };
-  return jwt.sign(payload, secret);
+//   const payload = {
+//     sub: userId,
+//     iat: Math.floor(Date.now() / 1000),
+//     exp: expires,
+//     type,
+//   };
+//   return jwt.sign(payload, secret);
+// };
+const payload = {
+  sub: userId,
+  type: type,
+  exp: expires,
+  iat:Date.now()/1000,
 };
-
+const jwtToken = jwt.sign(payload, secret);
+// console.log(jwtToken);
+return jwtToken;
+};
 /**
  * Generate auth token
  * - Generate jwt token

@@ -1,4 +1,3 @@
-
 const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
@@ -54,31 +53,31 @@ const {userService}  = require("../services");
 
 const getUser = catchAsync(async (req, res) => {
   let data;
-  // if (req.query.q === "address") {
-  //   data = await userService.getUserAddressById(req.params.userId);
-  // } else {
-  //   data = await userService.getUserById(req.params.userId);
-  // }
+  if (req.query.q === "address") {
+    data = await userService.getUserAddressById(req.params.userId);
+  } else {
+    data = await userService.getUserById(req.params.userId);
+  }
   data = await userService.getUserById(req.params.userId);
 
-  // if (!data) {
-  //   throw new ApiError(httpStatus.NOT_FOUND, "User not found");
-  // }
+  if (!data) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+  }
 
-  // if (data.email != req.user.email) {
-  //   throw new ApiError(
-  //     httpStatus.FORBIDDEN,
-  //     "User not authorized to access this resource"
-  //   );
-  // }
+  if (data.email != req.user.email) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      "User not authorized to access this resource"
+    );
+  }
 
-  // if (req.query.q === "address") {
-  //   res.send({
-  //     address: data.address,
-  //   });
-  // } else {
+  if (req.query.q === "address") {
+    res.send({
+      address: data.address,
+    });
+  } else {
     res.send(data);
-  // }
+  }
 
 });
 

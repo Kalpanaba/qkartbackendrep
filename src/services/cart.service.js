@@ -1,5 +1,3 @@
-// CRIO_SOLUTION_START_MODULE_CART
-// CRIO_SOLUTION_END_MODULE_CART
 const httpStatus = require("http-status");
 const { Cart, Product } = require("../models");
 const ApiError = require("../utils/ApiError");
@@ -26,7 +24,7 @@ const getCartByUser = async (user) => {
   }
 
   return cart;
-  // CRIO_SOLUTION_END_MODULE_CART
+  
 };
 
 /**
@@ -54,7 +52,6 @@ const getCartByUser = async (user) => {
  * @throws {ApiError}
  */
 const addProductToCart = async (user, productId, quantity) => {
-  // CRIO_SOLUTION_START_MODULE_CART
   // Check if a cart is created already for the user
   // if not create an empty one
   let cart = await Cart.findOne({ email: user.email });
@@ -110,7 +107,7 @@ const addProductToCart = async (user, productId, quantity) => {
 
   await cart.save();
   return cart;
-  // CRIO_SOLUTION_END_MODULE_CART
+ 
 };
 
 /**
@@ -138,7 +135,7 @@ const addProductToCart = async (user, productId, quantity) => {
  * @throws {ApiError}
  */
 const updateProductInCart = async (user, productId, quantity) => {
-  // CRIO_SOLUTION_START_MODULE_CART
+ 
   let cart = await Cart.findOne({ email: user.email });
   if (cart == null) {
     throw new ApiError(
@@ -173,7 +170,7 @@ const updateProductInCart = async (user, productId, quantity) => {
   await cart.save();
 
   return cart;
-  // CRIO_SOLUTION_END_MODULE_CART
+ 
 };
 
 /**
@@ -194,7 +191,7 @@ const updateProductInCart = async (user, productId, quantity) => {
  * @throws {ApiError}
  */
 const deleteProductFromCart = async (user, productId) => {
-  // CRIO_SOLUTION_START_MODULE_CART
+ 
   let cart = await Cart.findOne({ email: user.email });
   if (cart == null) {
     throw new ApiError(httpStatus.BAD_REQUEST, "User does not have a cart");
@@ -216,7 +213,7 @@ const deleteProductFromCart = async (user, productId) => {
   }
 
   await cart.save();
-  // CRIO_SOLUTION_END_MODULE_CART
+ 
 };
 
 // TODO: CRIO_TASK_MODULE_TEST - Implement checkout function
@@ -229,7 +226,7 @@ const deleteProductFromCart = async (user, productId) => {
  * @throws {ApiError} when cart is invalid
  */
 const checkout = async (user) => {
-  // CRIO_SOLUTION_START_MODULE_TEST
+ 
   // TODO - Test1
   let cart = await Cart.findOne({ email: user.email });
   if (cart == null) {
@@ -246,9 +243,9 @@ const checkout = async (user) => {
   if (!hasSetNonDefaultAddress) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Address not set");
   }
-  // if (user.address == config.default_address) {
-  //   throw new ApiError(httpStatus.BAD_REQUEST, "Address not set");
-  // }
+  if (user.address == config.default_address) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Address not set");
+   }
 
   // TODO - Test4
   let total = 0;
@@ -269,7 +266,7 @@ const checkout = async (user) => {
 
   cart.cartItems = [];
   await cart.save();
-  // CRIO_SOLUTION_END_MODULE_TEST
+ 
 };
 
 module.exports = {

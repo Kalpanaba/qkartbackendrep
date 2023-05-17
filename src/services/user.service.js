@@ -12,7 +12,11 @@ const bcrypt = require("bcryptjs");
  */
 
  const getUserById = async(id)=>{
-    return User.findById(id);
+    // return User.findById(id);
+    const theUser = await User.findOne({ "_id": id });
+    // console.log(theUser,"theUser")
+    return theUser;
+
 }
 
 //Implement getUserByEmail(email)

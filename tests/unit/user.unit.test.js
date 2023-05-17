@@ -1,10 +1,9 @@
-// CRIO_SOLUTION_START_MODULE_UNDERSTANDING_BASICS
-// CRIO_SOLUTION_END_MODULE_UNDERSTANDING_BASICS
 const { User } = require("../../src/models");
 const { userOne } = require("../fixtures/user.fixture");
 const { userService } = require("../../src/services");
 const ApiError = require("../../src/utils/ApiError");
 const mockingoose = require("mockingoose").default;
+const User1 = require("../../src/models");
 
 
 

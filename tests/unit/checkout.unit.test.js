@@ -38,17 +38,16 @@ describe("Cart test", () => {
        *  "stack": "<Error-stack-trace-if-present>"
        * }
        */
-      // CRIO_UNCOMMENT_START_MODULE_TEST
+     
       // expect(true).toEqual(false);
-      // CRIO_UNCOMMENT_END_MODULE_TEST
-      // CRIO_SOLUTION_START_MODULE_TEST
+     
       await expect(res).rejects.toThrow(ApiError);
       await expect(res).rejects.toEqual(
         expect.objectContaining({
           statusCode: httpStatus.NOT_FOUND,
         })
       );
-      // CRIO_SOLUTION_END_MODULE_TEST
+      
     });
 
     it("should throw 400 error if user's cart doesn't have any product", async () => {
@@ -60,14 +59,14 @@ describe("Cart test", () => {
       // TODO: CRIO_TASK_MODULE_TEST - Assert if
       // - ApiError is thrown
       // - the "statusCode" field of response is "400 BAD REQUEST"
-      // CRIO_SOLUTION_START_MODULE_TEST
+    
       await expect(res).rejects.toThrow(ApiError);
       await expect(res).rejects.toEqual(
         expect.objectContaining({
           statusCode: httpStatus.BAD_REQUEST,
         })
       );
-      // CRIO_SOLUTION_END_MODULE_TEST
+      
     });
 
     it("should throw 400 error if address is not set", async () => {
@@ -86,14 +85,14 @@ describe("Cart test", () => {
       // TODO: CRIO_TASK_MODULE_TEST - Assert if
       // - ApiError is thrown
       // - the "statusCode" field of response is "400 BAD REQUEST"
-      // CRIO_SOLUTION_START_MODULE_TEST
+     
       await expect(res).rejects.toThrow(ApiError);
       await expect(res).rejects.toEqual(
         expect.objectContaining({
           statusCode: httpStatus.BAD_REQUEST,
         })
       );
-      // CRIO_SOLUTION_END_MODULE_TEST
+     
     });
 
     it("should throw 400 error if wallet balance is insufficient", async () => {
@@ -112,14 +111,14 @@ describe("Cart test", () => {
       // TODO: CRIO_TASK_MODULE_TEST - Assert if
       // - ApiError is thrown
       // - the "statusCode" field of response is "400 BAD REQUEST"
-      // CRIO_SOLUTION_START_MODULE_TEST
+    
       await expect(res).rejects.toThrow(ApiError);
       await expect(res).rejects.toEqual(
         expect.objectContaining({
           statusCode: httpStatus.BAD_REQUEST,
         })
       );
-      // CRIO_SOLUTION_END_MODULE_TEST
+     
     });
 
     it("should update user balance and empty the cart on success", async () => {
@@ -152,12 +151,11 @@ describe("Cart test", () => {
       expect(hasSetNonDefaultAddressMock.mock.calls.length).not.toBe(0);
 
       // TODO: CRIO_TASK_MODULE_TEST - Assert that the wallet balance of user was reduced
-      // CRIO_UNCOMMENT_START_MODULE_TEST
+     
       // expect(true).toEqual(false);
-      // CRIO_UNCOMMENT_END_MODULE_TEST
-      // CRIO_SOLUTION_START_MODULE_TEST
+     
       expect(userOneFinal.walletMoney).toBeLessThan(userOne.walletMoney);
-      // CRIO_SOLUTION_END_MODULE_TEST
+      
     });
   });
-}); 
+});

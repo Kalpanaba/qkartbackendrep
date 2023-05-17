@@ -8,21 +8,21 @@ const { objectId,password } = require("./custom.validation");
  * - string
  * - valid Mongo id -> Use the helper function in src/validations/custom.validation.js
  */
-// const getUser = {
-//   params: Joi.object().keys({
-//     userId : Joi.string().custom(objectId)
-//   }),
-// };
-
 const getUser = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId)
-      .messages({
-        'string.pattern.base': '"{{#label}}" must be a valid Mongo ObjectId'
-      })
-      .required()
-  })
+    userId : Joi.string().custom(objectId)
+  }),
 };
+
+// const getUser = {
+//   params: Joi.object().keys({
+//     userId: Joi.string().custom(objectId)
+//       // .messages({
+//       //   'string.pattern.base': '"{{#label}}" must be a valid Mongo ObjectId'
+//       // })
+//       // .required()
+//   })
+// };
 
 // const createUser = {
 //   body: Joi.object().keys({
@@ -44,7 +44,6 @@ const getUser = {
  };
 
 module.exports = {
-  getUser
-  // createUser,
-  // setAddress
+  getUser,
+  setAddress
 };

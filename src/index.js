@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const app = require("./app");
 const config = require("./config/config");
+//const logger = require("./config/logger");
 
-//const userRouter = require('./routes/v1/user.route')
-// app.use('/v1/users', userRouter);
+const userRouter = require('./routes/v1/user.route')
+ app.use('/v1/users', userRouter);
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Create Mongo connection and get the express app to listen on config.port
 let server;

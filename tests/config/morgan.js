@@ -1,4 +1,4 @@
-const morgan = require('morgan');
+const morgan = require('/morgan');
 const config = require('./config');
 const logger = require('./logger');
 

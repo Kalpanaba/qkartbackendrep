@@ -226,6 +226,7 @@ describe("Cart routes", () => {
 
   describe("Update cart items", () => {
     it("should return 200 and the cart data if success", async () => {
+      jest.setTimeout(5000);
       await insertUsers([userOne]);
       await insertProducts([productOne, productTwo]);
       await insertCart([emptyCart]);
@@ -302,6 +303,7 @@ describe("Cart routes", () => {
         (cartItem) => cartItem.product._id === productOne._id.toString()
       );
       expect(productOneInCartDB.length).toEqual(0);
+      
     });
 
     it("should return 400 error if productId is missing", async () => {
