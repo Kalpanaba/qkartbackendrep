@@ -48,7 +48,7 @@ const addProductToCart = catchAsync(async (req, res) => {
     req.body.quantity
   );
 
-  res.status(httpStatus.CREATED).send(cart);
+  res.status(httpStatus.CREATED).json(cart);
 });
 
 /**
@@ -69,7 +69,8 @@ const addProductToCart = catchAsync(async (req, res) => {
 const updateProductInCart = catchAsync(async (req, res) => {
   if (req.body.quantity == 0) {
     await cartService.deleteProductFromCart(req.user, req.body.productId);
-    return res.status(httpStatus.NO_CONTENT).send();
+    res.sendStatus(httpStatus.NO_CONTENT);
+    return;
   }
 
   const cart = await cartService.updateProductInCart(
@@ -78,7 +79,7 @@ const updateProductInCart = catchAsync(async (req, res) => {
     req.body.quantity
   );
 
-  return res.status(httpStatus.OK).send(cart);
+   res.status(httpStatus.OK).json(cart);
   
 });
 
@@ -88,11 +89,13 @@ const updateProductInCart = catchAsync(async (req, res) => {
  * Checkout user's cart
  */
 const checkout = catchAsync(async (req, res) => {
-   await cartService.checkout();
-  return (
-    res
-      .send()
-  );
+   await cartService.checkout(req.user);
+   res.sendStatus(204);
+  // return (
+  //   res
+  //   .status(httpStatus.NO_CONTENT)
+  //     .send()
+  // );
 });
 
 module.exports = {

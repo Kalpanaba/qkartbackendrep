@@ -12,10 +12,10 @@ const helmet = require("helmet");
 const passport = require("passport");
 
 const app = express();
-if (config.env !== "test") {
-    app.use(morgan.successHandler);
-    app.use(morgan.errorHandler);
-  }
+// if (config.env !== "test") {
+//     app.use(morgan.successHandler);
+//     app.use(morgan.errorHandler);
+//   }
 
 
 app.use(helmet());

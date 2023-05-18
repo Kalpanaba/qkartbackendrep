@@ -92,7 +92,7 @@ describe("Cart routes", () => {
 
       // TODO: CRIO_TASK_MODULE_TEST - Assert if status code is 400
      
-       expect(true).toEqual(false);
+       //expect(true).toEqual(false);
       
       expect(res.status).toEqual(httpStatus.BAD_REQUEST);
      

@@ -1,6 +1,7 @@
  const mongoose = require("mongoose");
 const validator = require("validator");
 const config = require("../config/config");
+const bcrypt = require('bcryptjs');
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Complete userSchema, a Mongoose schema for "users" collection
 const userSchema = mongoose.Schema(
@@ -82,7 +83,7 @@ userSchema.statics.isEmailTaken = async function (email) {
  */
 userSchema.methods.hasSetNonDefaultAddress = async function () {
   const user = this;
-   return user.address === config.default_address;
+   return user.address !== config.default_address;
 };
 
 /*
@@ -96,4 +97,3 @@ userSchema.methods.hasSetNonDefaultAddress = async function () {
 
  const User=mongoose.model("user",userSchema);  
  module.exports ={User}
-// you did not implement this

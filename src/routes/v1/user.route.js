@@ -5,7 +5,7 @@ const userController = require("../../controllers/user.controller");
 const router = express.Router();
 const auth = require("../../middlewares/auth");
 const { getUser } = require('../../validations/user.validation');
-const auth = require("../../middlewares/auth");
+//const auth = require("../../middlewares/auth");
 
 //router.get("/:userId",userController.getUser)
 router.get(
